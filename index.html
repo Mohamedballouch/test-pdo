@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Estimate the value of automating a repetitive task with AI." />
+    <title>AI Use-Case Value Calculator</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>AI Use-Case Value Calculator</h1>
+        <p class="lede">
+          Estimate what automating a repetitive task could be worth. Every figure is an estimate based on the
+          assumptions you can see and change below.
+        </p>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section class="panel inputs" aria-labelledby="assumptions-heading">
+        <div class="panel-head">
+          <h2 id="assumptions-heading">Assumptions</h2>
+          <span class="badge" id="example-badge" title="These starting values are made up for illustration">
+            Illustrative example values
+          </span>
+        </div>
+        <p class="notice" id="example-notice">
+          The values below are an <strong>illustrative example</strong>, not real data. Replace them with your own
+          estimates.
+        </p>
+
+        <form id="calc-form" novalidate>
+          <div class="field field-wide">
+            <label for="name">Use-case name</label>
+            <input id="name" name="name" type="text" autocomplete="off" />
+            <small>What task are you automating?</small>
+          </div>
+
+          <div class="field">
+            <label for="people">People affected</label>
+            <div class="input-unit"><input id="people" name="people" type="number" min="0" step="1" inputmode="numeric" /><span>people</span></div>
+            <small>How many people do this task today.</small>
+          </div>
+
+          <div class="field">
+            <label for="hoursPerWeek">Hours saved per person</label>
+            <div class="input-unit"><input id="hoursPerWeek" name="hoursPerWeek" type="number" min="0" step="0.5" inputmode="decimal" /><span>h / week</span></div>
+            <small>Time each person saves in a typical week.</small>
+          </div>
+
+          <div class="field">
+            <label for="weeksPerYear">Working weeks per year</label>
+            <div class="input-unit"><input id="weeksPerYear" name="weeksPerYear" type="number" min="0" max="52" step="1" inputmode="numeric" /><span>weeks</span></div>
+            <small>Excluding holidays and leave.</small>
+          </div>
+
+          <div class="field">
+            <label for="hourlyCost">Hourly cost</label>
+            <div class="input-unit"><input id="hourlyCost" name="hourlyCost" type="number" min="0" step="1" inputmode="decimal" /><span>MAD / h</span></div>
+            <small>Fully loaded cost of one hour of work.</small>
+          </div>
+
+          <div class="field">
+            <label for="adoptionPercent">Expected adoption rate</label>
+            <div class="input-unit"><input id="adoptionPercent" name="adoptionPercent" type="number" min="0" max="100" step="5" inputmode="decimal" /><span>%</span></div>
+            <small>Share of people who will actually use it (0–100%).</small>
+          </div>
+
+          <div class="field">
+            <label for="implementationCost">One-time implementation cost</label>
+            <div class="input-unit"><input id="implementationCost" name="implementationCost" type="number" min="0" step="1000" inputmode="decimal" /><span>MAD</span></div>
+            <small>Setup, integration, training.</small>
+          </div>
+
+          <div class="field">
+            <label for="operatingCost">Annual operating cost</label>
+            <div class="input-unit"><input id="operatingCost" name="operatingCost" type="number" min="0" step="1000" inputmode="decimal" /><span>MAD / year</span></div>
+            <small>Licences, usage, maintenance.</small>
+          </div>
+        </form>
+
+        <button type="button" class="link-button" id="reset-button">Reset to illustrative example</button>
+      </section>
+
+      <section class="panel results" aria-labelledby="results-heading" aria-live="polite">
+        <h2 id="results-heading">Estimated value</h2>
+        <p class="use-case-name" id="result-name"></p>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Annual hours saved</h3>
+            <p class="value" id="out-hours"></p>
+          </article>
+          <article class="card">
+            <h3>Annual gross savings</h3>
+            <p class="value" id="out-gross"></p>
+          </article>
+          <article class="card">
+            <h3>First-year net benefit</h3>
+            <p class="value" id="out-net"></p>
+          </article>
+          <article class="card">
+            <h3>Estimated payback time</h3>
+            <p class="value" id="out-payback"></p>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="primary" id="copy-button">Copy summary</button>
+          <span class="copy-status" id="copy-status" role="status"></span>
+        </div>
+
+        <details class="how">
+          <summary>How this is calculated</summary>
+          <ul>
+            <li><strong>Annual hours saved</strong> = people × hours saved per week × working weeks × adoption rate</li>
+            <li><strong>Annual gross savings</strong> = annual hours saved × hourly cost</li>
+            <li>
+              <strong>First-year net benefit</strong> = annual gross savings − annual operating cost − one-time
+              implementation cost
+            </li>
+            <li>
+              <strong>Payback time</strong> = implementation cost ÷ (annual gross savings − annual operating cost),
+              shown in months. If annual gross savings do not exceed the annual operating cost, there is
+              <em>no payback under these assumptions</em>.
+            </li>
+          </ul>
+          <p>
+            Empty or negative inputs are treated as 0. The adoption rate is capped at 100%. Amounts are shown in
+            Moroccan dirham (MAD), rounded to the nearest dirham.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <p>Estimates only. No data leaves your browser.</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
