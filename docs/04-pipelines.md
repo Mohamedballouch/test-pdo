@@ -57,7 +57,7 @@ cp -r docs/examples/issue-to-demo.prompts ~/.pdo/pipelines/
 
 Run those commands from the root of a checkout containing this documentation. Keep the YAML and **issue-to-demo.prompts** directory together. PDO's pipeline watcher should pick them up; refresh the Pipelines tab. If a pipeline with the same name already exists, back it up or choose a new name before copying. Inspect the imported node prompts in the UI before launching it.
 
-For a pipeline kept with a specific repository, PDO also supports a repository pipeline directory under **.pdo/pipelines**. The instance library above is easiest for this reusable cross-repository example. See [PDO's pipeline feature documentation](https://github.com/Loulen/prompt-driven-orchestrator/blob/main/docs/features.md#visual-pipelines) for the full authoring surface.
+In PDO **v1.110.0**, **New Run** chooses from the instance-wide pipeline library under `~/.pdo/pipelines/`, regardless of which target repository you select. A repository's own `.pdo/pipelines/` folder is not automatically a separate picker for that target. To version a team pipeline with code, keep a reviewed YAML and matching prompts in that repository (as this guide does under `docs/examples/`), then import or copy them into the PDO instance library. Give pipelines clear names so you can pick the right one across projects. See [the multi-repository guide](10-multiple-projects-and-repositories.md) and [PDO's pipeline feature documentation](https://github.com/Loulen/prompt-driven-orchestrator/blob/v1.110.0/docs/features.md#visual-pipelines).
 
 ## Verify the design before real work
 

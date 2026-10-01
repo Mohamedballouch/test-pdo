@@ -80,7 +80,7 @@ Follow this order so a failing run is easy to diagnose.
 
 ### GitHub is a local-tool connection, not a PDO account field
 
-The cloned repository's `origin` remote points to GitHub. `gh auth login` grants GitHub CLI issue/PR access in Ubuntu, and `gh auth setup-git` lets Git use that sign-in for HTTPS pushes. Put a full issue URL in the New Run prompt **only when the pipeline has a node instructed to fetch it** with `gh`; [issue-to-demo](examples/issue-to-demo.yaml) does. PDO has no general “connect GitHub account” field or automatic issue watcher in this version. An issue URL in a prompt is input text, not an OAuth connection or webhook. See the [issue-to-run guide](03-github-issue-to-run.md).
+The cloned repository's `origin` remote points to GitHub. `gh auth login` grants GitHub CLI issue/PR access in Ubuntu, and `gh auth setup-git` lets Git use that sign-in for HTTPS pushes. Give New Run an issue URL or number **only when the pipeline has a node instructed to fetch it** with `gh`; [issue-to-demo](examples/issue-to-demo.yaml) does. PDO has no general “connect GitHub account” field or automatic issue watcher in this version. An issue identifier in a prompt is input text, not an OAuth connection or webhook. See the [issue-to-run guide](03-github-issue-to-run.md).
 
 If you later want polling, configure a **Trigger** for the pipeline with a UTC five-field schedule and a guard command that checks GitHub through `gh`. Guard exit status `0` starts a run and its stdout becomes run input; a nonzero status skips that tick. **Test guard** before enabling it. Triggers run only while the daemon is running and do not track which issue was already handled for you, so the workflow needs its own label or other deduplication rule.
 
@@ -145,4 +145,4 @@ The installer copies `.agents/skills/` and adds a marked block to `AGENTS.md`; f
 
 For common setup failures (daemon disconnected, missing Git author, agent sign-in, GitHub auth, wrong WSL path, failed nodes), use [Troubleshooting](05-troubleshooting.md).
 
-For answers about default skills, PDSF, and ticket references, use the [FAQ](08-faq.md); for Jira setup and scheduled ticket discovery, use [Jira and other ticket sources](09-jira-and-ticket-integration.md).
+For several codebases, see the [multiple-projects walkthrough and screenshots](10-multiple-projects-and-repositories.md). For answers about default skills, PDSF, and ticket references, use the [FAQ](08-faq.md); for Jira setup and scheduled ticket discovery, use [Jira and other ticket sources](09-jira-and-ticket-integration.md).

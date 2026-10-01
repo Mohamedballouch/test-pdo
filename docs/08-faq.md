@@ -38,6 +38,10 @@ If the same skill name is already installed in the repository and selected from 
 
 ## Tickets and repositories
 
+### Can one PDO installation handle several projects or Git repositories?
+
+Yes. Keep one PDO daemon in Ubuntu and select the **Target repository** for each New Run. The Runs list groups work by primary repository path; optional named **Projects** group related paths and provide shared agent, skill, and worktree defaults. The pipeline menu is shared across the instance, so use names that distinguish workflows. A single run can also add secondary repositories when one ticket spans codebases. The [multi-repository walkthrough](10-multiple-projects-and-repositories.md) has screenshots of every choice.
+
 ### Where do I “link GitHub” in PDO?
 
 There is no general **Connect GitHub account** field in this PDO version. Clone the repository in Ubuntu; its Git `origin` remote identifies GitHub. Sign in with `gh auth login` in Ubuntu if a node must read issues or create a PR, and set up Git's HTTPS authentication before pushing. In **New Run**, select the **local clone** and a source branch. See the [GitHub issue walkthrough](03-github-issue-to-run.md).

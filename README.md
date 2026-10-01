@@ -14,9 +14,10 @@ This repository also contains a step-by-step guide for running a GitHub issue th
 4. [Create or adapt a multi-step pipeline](docs/04-pipelines.md)
 5. [Build, run, and inspect a pipeline yourself](docs/06-hands-on-pipeline-demo.md)
 6. [Understand every PDO area, its configuration, and where PDSF fits](docs/07-pdo-functional-and-configuration-guide.md)
-7. [Connect Jira and choose how tickets reach a run](docs/09-jira-and-ticket-integration.md)
-8. [Read the PDO, skills, PDSF, and ticket Q&A](docs/08-faq.md)
-9. [Troubleshoot common errors](docs/05-troubleshooting.md)
+7. [Work with several projects and repositories, with real PDO screenshots](docs/10-multiple-projects-and-repositories.md)
+8. [Connect Jira and choose how tickets reach a run](docs/09-jira-and-ticket-integration.md)
+9. [Read the PDO, skills, PDSF, and ticket Q&A](docs/08-faq.md)
+10. [Troubleshoot common errors](docs/05-troubleshooting.md)
 
 For the hands-on workflow, [watch the 1080p pipeline-building MP4](docs/assets/build-pipeline-demo.mp4) and [the run-inspection MP4](docs/assets/run-inspection-demo.mp4). The portable examples are [manager-readiness-demo](docs/examples/manager-readiness-demo.yaml) and [issue-to-demo](docs/examples/issue-to-demo.yaml). The issue example uses [issue #1](https://github.com/Mohamedballouch/test-pdo/issues/1). PDO runs on http://localhost:5172; the calculator app below runs on http://localhost:5173.
 
