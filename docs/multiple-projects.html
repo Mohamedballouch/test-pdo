@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="A screenshot walkthrough of using one PDO daemon with several projects and Git repositories.">
+    <title>Several projects in PDO — screenshot guide</title>
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #17243a;
+        background: #f5f7fb;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; line-height: 1.55; }
+      a { color: #1655a7; text-underline-offset: .16em; }
+      a:hover { color: #0a3774; }
+      a:focus-visible { outline: 3px solid #ffba5c; outline-offset: 4px; border-radius: 3px; }
+      .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 10; padding: .65rem 1rem; background: #fff; }
+      .skip-link:focus { top: 1rem; }
+      .wrap { width: min(100% - 2rem, 1160px); margin-inline: auto; }
+      .hero { background: linear-gradient(135deg, #10223e 0%, #193c59 63%, #186a70 100%); color: #fff; padding: 3.5rem 0 2.75rem; }
+      .eyebrow { display: inline-block; margin: 0 0 .9rem; color: #98e2d7; font-size: .8rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+      h1 { max-width: 19ch; margin: 0; font-size: clamp(2.1rem, 5vw, 4rem); line-height: 1.11; letter-spacing: -.035em; }
+      .lede { max-width: 68ch; margin: 1.15rem 0 1.6rem; color: #e3edf4; font-size: clamp(1rem, 1.8vw, 1.16rem); }
+      .hero-links, .jump-links { display: flex; flex-wrap: wrap; gap: .65rem; }
+      .hero-links a { display: inline-flex; align-items: center; min-height: 2.7rem; padding: .58rem .95rem; border: 1px solid #a8d6da; border-radius: .7rem; color: #fff; font-weight: 650; text-decoration: none; }
+      .hero-links a:first-child { background: #d7fbef; border-color: #d7fbef; color: #153c3c; }
+      .hero-links a:hover { background: #fff; color: #12324c; }
+      .concept { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 2.1rem; }
+      .concept div { min-height: 6.8rem; padding: 1rem; border: 1px solid #ffffff40; border-radius: .85rem; background: #ffffff12; }
+      .concept strong, .concept span { display: block; }
+      .concept strong { font-size: 1.02rem; }
+      .concept span { margin-top: .25rem; color: #d7e5ea; font-size: .92rem; }
+      main { padding-top: 2.1rem; padding-bottom: 4rem; }
+      .intro { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(230px, .8fr); gap: 1.2rem; align-items: start; }
+      .intro h2 { margin: 0 0 .45rem; font-size: 1.55rem; }
+      .intro p { max-width: 70ch; margin: 0 0 .8rem; }
+      .note { padding: 1rem 1.15rem; border-left: 4px solid #29a48e; border-radius: .5rem; background: #e8f7f3; }
+      .note strong { display: block; margin-bottom: .2rem; }
+      .note p { margin: 0; }
+      .jump-links { margin: 1.3rem 0 2.2rem; }
+      .jump-links a { padding: .4rem .75rem; border: 1px solid #cbd8e5; border-radius: 99px; background: #fff; font-weight: 600; text-decoration: none; }
+      section { margin-top: 2.7rem; scroll-margin-top: 1rem; }
+      .section-heading { display: flex; gap: .9rem; align-items: flex-start; margin-bottom: 1.15rem; }
+      .step { flex: none; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: #177768; color: #fff; font-weight: 800; }
+      .section-heading h2 { margin: -.13rem 0 .2rem; font-size: clamp(1.45rem, 3vw, 1.9rem); line-height: 1.2; }
+      .section-heading p { max-width: 72ch; margin: 0; color: #536278; }
+      .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1rem; align-items: start; }
+      figure { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #d8e1eb; border-radius: 1rem; background: #fff; box-shadow: 0 8px 24px #10223e0b; }
+      .shot { display: flex; align-items: flex-start; justify-content: center; min-height: 8rem; padding: 1rem; background: #e9edf3; }
+      .shot img { display: block; max-width: 100%; height: auto; border: 1px solid #283244; border-radius: .55rem; box-shadow: 0 8px 22px #14233c25; }
+      .shot a { display: inline-block; line-height: 0; }
+      figcaption { padding: 1rem 1.15rem 1.2rem; }
+      figcaption strong { display: block; margin-bottom: .25rem; font-size: 1.05rem; }
+      figcaption p { margin: 0; color: #536278; }
+      .status { display: inline-block; margin: .55rem 0 0; padding: .16rem .5rem; border-radius: .3rem; background: #e9f7f3; color: #126251; font-size: .75rem; font-weight: 800; letter-spacing: .035em; text-transform: uppercase; }
+      .status.example { background: #fff1d8; color: #835012; }
+      .takeaway { margin-top: 1.2rem; padding: 1rem 1.2rem; border-radius: .75rem; background: #e9f2ff; }
+      .takeaway p { margin: 0; }
+      .takeaway strong { color: #144a8d; }
+      .next { margin-top: 3rem; padding: 1.4rem 1.6rem; border-radius: 1rem; background: #16334f; color: #fff; }
+      .next h2 { margin: 0 0 .45rem; font-size: 1.4rem; }
+      .next p { margin: 0 0 .7rem; color: #e3edf4; }
+      .next a { color: #aef6df; }
+      footer { padding: 1.2rem 0 2rem; border-top: 1px solid #d8e1eb; color: #536278; font-size: .92rem; }
+      @media (max-width: 700px) {
+        .hero { padding: 2.6rem 0 2rem; }
+        .concept, .intro, .gallery { grid-template-columns: 1fr; }
+        .shot { padding: .75rem; }
+      }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the screenshot guide</a>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">PDO visual guide · several repositories</p>
+        <h1>One PDO. Many projects. Clear runs.</h1>
+        <p class="lede">Keep the PDO daemon in Ubuntu. Choose a local Git repository for each run, use Projects to group related work, and inspect the repository details before you publish changes.</p>
+        <nav class="hero-links" aria-label="Related guides">
+          <a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/10-multiple-projects-and-repositories.md">Read the complete step-by-step guide</a>
+          <a href="videos.html">Watch the PDO MP4 demos</a>
+        </nav>
+        <div class="concept" role="list" aria-label="How PDO separates work">
+          <div role="listitem"><strong>One Ubuntu daemon</strong><span>Serves every local repository it can access.</span></div>
+          <div role="listitem"><strong>One target per run</strong><span>The primary repository is selected when you launch.</span></div>
+          <div role="listitem"><strong>Optional Projects</strong><span>Name related paths and share defaults.</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap" id="main">
+      <div class="intro">
+        <div>
+          <h2>Follow the repository, then the run</h2>
+          <p>A <strong>Project</strong> groups local repository paths and can provide shared agent or skill defaults. A <strong>pipeline</strong> is the reusable sequence of work. A <strong>run</strong> selects its primary repository, source branch, pipeline, and task.</p>
+          <p>Click any screenshot to open the original image at full size. The captions identify examples that were left unsaved or unlaunched.</p>
+        </div>
+        <aside class="note" aria-label="About the example repositories">
+          <strong>About these screenshots</strong>
+          <p><code>test-pdo</code> and <code>test-pdo-guide</code> are two local checkouts of the <em>same</em> GitHub repository. Their separate rows show how PDO distinguishes checkout paths. A second unrelated repository would appear the same way after you clone and select it.</p>
+        </aside>
+      </div>
+      <nav class="jump-links" aria-label="Steps on this page">
+        <a href="#group">1 · Group and find work</a>
+        <a href="#launch">2 · Choose a repository</a>
+        <a href="#inspect">3 · Inspect a run</a>
+      </nav>
+
+      <section id="group" aria-labelledby="group-heading">
+        <div class="section-heading"><span class="step" aria-hidden="true">1</span><div><h2 id="group-heading">Group and find the work</h2><p>PDO's Runs page can group runs by their primary checkout. Add a named Project when several paths belong to one product or team.</p></div></div>
+        <div class="gallery">
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-runs.png" aria-label="Open full-size Runs list screenshot"><img src="assets/multi-repo-runs.png" width="240" height="834" loading="lazy" decoding="async" alt="PDO Runs list grouped under test-pdo and test-pdo-guide local repository paths, with distinct run names and pipelines"></a></div>
+            <figcaption><strong>Runs grouped by primary path</strong><p>Each heading is the run's target checkout. Give runs names that include the product and ticket so two similar pipelines stay easy to tell apart.</p><span class="status">Captured UI</span></figcaption>
+          </figure>
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-project-dialog.png" aria-label="Open full-size Project dialog screenshot"><img src="assets/multi-repo-project-dialog.png" width="440" height="446" loading="lazy" decoding="async" alt="PDO Project dialog with a sample name, member repository checkbox, and inherited agent and skills settings"></a></div>
+            <figcaption><strong>Name a Project, if useful</strong><p>Select member repository paths and optional shared defaults. This illustrative configuration was shown <strong>before Save</strong>; it did not create a Project.</p><span class="status example">Unsaved example</span></figcaption>
+          </figure>
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-runs-filter.png" aria-label="Open full-size Runs filter screenshot"><img src="assets/multi-repo-runs-filter.png" width="240" height="834" loading="lazy" decoding="async" alt="PDO Runs page with its Project filter open, listing exact local repository paths"></a></div>
+            <figcaption><strong>Filter by an exact primary path</strong><p>The Runs page's Project filter lists individual repository paths. Pick the checkout you want, then narrow further with Pipeline or Trigger if needed.</p><span class="status">Captured UI</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="launch" aria-labelledby="launch-heading">
+        <div class="section-heading"><span class="step" aria-hidden="true">2</span><div><h2 id="launch-heading">Choose where and how a run starts</h2><p>Every run needs a target repository and source branch. Pipelines live in the shared PDO instance, so select one that fits that repository.</p></div></div>
+        <div class="gallery">
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-repository-picker.png" aria-label="Open full-size repository picker screenshot"><img src="assets/multi-repo-repository-picker.png" width="480" height="766" loading="lazy" decoding="async" alt="New Run repository picker suggesting local Ubuntu Git checkout paths"></a></div>
+            <figcaption><strong>Pick the Ubuntu checkout</strong><p>Choose the local Git folder, such as <code>/home/mohamed_ballouch/test-pdo</code>, rather than a GitHub web link. Check that PDO says it is a valid Git repository.</p><span class="status">Captured UI</span></figcaption>
+          </figure>
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-pipeline-picker.png" aria-label="Open full-size pipeline picker screenshot"><img src="assets/multi-repo-pipeline-picker.png" width="478" height="657" loading="lazy" decoding="async" alt="New Run pipeline menu showing reusable pipelines available across the PDO instance"></a></div>
+            <figcaption><strong>Select the matching pipeline</strong><p>The pipeline picker is instance-wide. A general workflow can be reused; give a repository-specific workflow a clear name so it is easy to select.</p><span class="status">Captured UI</span></figcaption>
+          </figure>
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-new-run.png" aria-label="Open full-size New Run example screenshot"><img src="assets/multi-repo-new-run.png" width="480" height="1020" loading="lazy" decoding="async" alt="New Run form filled with a descriptive name, test-pdo target path, main source branch, issue-to-demo pipeline, and issue prompt"></a></div>
+            <figcaption><strong>Review the whole run before Launch</strong><p>Read the name, target path, source branch, pipeline, and prompt together. This filled form is an <strong>example only</strong>; its Launch button was not pressed.</p><span class="status example">Not launched</span></figcaption>
+          </figure>
+        </div>
+        <div class="takeaway"><p><strong>Separate products?</strong> Launch a separate run on each repository. You can keep one PDO daemon and, when appropriate, reuse the same pipeline.</p></div>
+      </section>
+
+      <section id="inspect" aria-labelledby="inspect-heading">
+        <div class="section-heading"><span class="step" aria-hidden="true">3</span><div><h2 id="inspect-heading">Add a second repository only when the task needs it</h2><p>For a task crossing repositories, the New Run form can add a secondary checkout. After launch, the Repositories tab identifies what the run actually used.</p></div></div>
+        <div class="gallery">
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-secondary.png" aria-label="Open full-size secondary repository form screenshot"><img src="assets/multi-repo-secondary.png" width="480" height="766" loading="lazy" decoding="async" alt="New Run form with test-pdo as primary and test-pdo-guide as a checked read-only secondary repository"></a></div>
+            <figcaption><strong>Optional secondary checkout</strong><p>This form shows a primary repository plus a <strong>read-only</strong> secondary for context. It was captured <strong>before launch</strong>; no multi-repository run was started from this form.</p><span class="status example">Not launched</span></figcaption>
+          </figure>
+          <figure>
+            <div class="shot"><a href="assets/multi-repo-run-repositories.png" aria-label="Open full-size completed run Repositories tab screenshot"><img src="assets/multi-repo-run-repositories.png" width="400" height="264" loading="lazy" decoding="async" alt="Completed PDO run Repositories tab showing its primary test-pdo-guide repository, source branch, and commit"></a></div>
+            <figcaption><strong>Verify the completed run</strong><p>Open <strong>Repositories</strong> to see the actual primary path and branch. This captured completed run had one primary repository; it is not the unlaunched secondary example beside it.</p><span class="status">Completed run</span></figcaption>
+          </figure>
+        </div>
+        <div class="takeaway"><p><strong>Before publishing:</strong> inspect each node's inputs and outputs, the run's Repositories and Diff tabs, and the Git remote for every checkout you intend to change.</p></div>
+      </section>
+
+      <aside class="next" aria-label="Continue learning">
+        <h2>Ready to try it in your own repository?</h2>
+        <p>The written guide covers cloning another repo in Ubuntu, creating a named Project, selecting the right pipeline, and checking the run after launch.</p>
+        <a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/10-multiple-projects-and-repositories.md">Open the full multi-repository guide</a> · <a href="videos.html">Watch the pipeline and run MP4s</a>
+      </aside>
+    </main>
+    <footer><div class="wrap">Screenshots are from the PDO interface in this Ubuntu demo. They document the indicated UI state; unsaved and unlaunched examples are labeled above.</div></footer>
+  </body>
+</html>

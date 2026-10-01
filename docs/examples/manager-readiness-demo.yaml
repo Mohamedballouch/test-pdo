@@ -1,0 +1,81 @@
+name: manager-readiness-demo
+version: "1.0"
+nodes:
+  - id: start
+    name: Start
+    type: start
+    outputs:
+      - { name: user_prompt, side: right }
+    view: { x: -80, y: 108 }
+  - id: end
+    name: End
+    type: end
+    inputs:
+      - { name: result, side: left }
+    view: { x: 537, y: 122 }
+  - id: "4f93zAHl"
+    name: Repository facts
+    type: script
+    isolated_worktree: false
+    outputs:
+      - { name: facts, side: right }
+    view: { x: 119, y: 4 }
+  - id: "3YUgopMk"
+    name: Calculator checks
+    type: script
+    isolated_worktree: false
+    outputs:
+      - { name: checks, side: right }
+    view: { x: 131, y: 230 }
+  - id: rht3O6FF
+    name: Manager readiness brief
+    type: agent
+    isolated_worktree: false
+    agent_choice: { mode: profile, profile_id: default }
+    inputs:
+      - { name: in, side: left }
+    outputs:
+      - { name: brief, side: right }
+    view: { x: 343, y: 100 }
+edges:
+  - source: { node: start, port: user_prompt }
+    target: { node: "4f93zAHl", port: user_prompt }
+    mode: manual
+    waypoints:
+      - { x: 110, y: 90 }
+      - { x: 89, y: 90 }
+    source_anchor: { side: right, offset: 12 }
+    target_anchor: { side: left, offset: 18 }
+  - source: { node: start, port: user_prompt }
+    target: { node: "3YUgopMk", port: user_prompt }
+    mode: manual
+    waypoints:
+      - { x: 110, y: 180 }
+      - { x: 101, y: 180 }
+    source_anchor: { side: right, offset: 12 }
+    target_anchor: { side: left, offset: 18 }
+  - source: { node: "4f93zAHl", port: facts }
+    target: { node: rht3O6FF, port: in }
+    mode: manual
+    waypoints:
+      - { x: 309, y: 59 }
+      - { x: 313, y: 59 }
+    source_anchor: { side: right, offset: 25 }
+    target_anchor: { side: left, offset: 18 }
+  - source: { node: "3YUgopMk", port: checks }
+    target: { node: rht3O6FF, port: in }
+    mode: manual
+    waypoints:
+      - { x: 321, y: 210 }
+      - { x: 351, y: 210 }
+      - { x: 351, y: 180 }
+      - { x: 313, y: 180 }
+    source_anchor: { side: right, offset: 10 }
+    target_anchor: { side: left, offset: 18 }
+  - source: { node: rht3O6FF, port: brief }
+    target: { node: end, port: result }
+    mode: manual
+    waypoints:
+      - { x: 507, y: 120 }
+    source_anchor: { side: right, offset: 20 }
+    target_anchor: { side: left, offset: 18 }

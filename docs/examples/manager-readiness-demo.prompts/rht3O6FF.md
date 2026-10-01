@@ -1,0 +1,3 @@
+Read the two upstream Markdown artifacts: repository facts and calculator checks. Write a short readiness note for a non-technical manager to the brief output path in the PDO Runtime Preamble.
+
+Include: (1) ready/not-ready recommendation for an internal demo, (2) what the calculator helps someone decide, (3) evidence from the actual tests, build, and repository snapshot, (4) three honest caveats: illustrative assumptions, no company data, and ROI is an estimate, and (5) a five-minute demo sequence. Keep it under 350 words. If checks failed or evidence is missing, say so clearly. Do not edit source files, push to GitHub, or claim deployment. After writing the Markdown output, call pdo complete.
