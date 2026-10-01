@@ -1,2 +1,5 @@
 node_modules
 dist
+.pdo/runs/
+.pdo/prompts/
+.pdo/artifacts/

@@ -4,6 +4,18 @@ A small single-page web app that helps a manager estimate the value of automatin
 (for example, preparing customer meeting summaries). Every figure is an **estimate** computed from
 assumptions the user can see and change. Nothing leaves the browser.
 
+## PDO onboarding and walkthrough
+
+This repository also contains a step-by-step guide for running a GitHub issue through Prompt Driven Orchestrator (PDO) in Ubuntu on Windows:
+
+1. [Install PDO, Claude Code, GitHub CLI, and clone this repo](docs/01-install-and-connect.md)
+2. [Configure the agent, model, and keys](docs/02-agents-and-keys.md)
+3. [Run a GitHub issue and inspect its results](docs/03-github-issue-to-run.md)
+4. [Create or adapt a multi-step pipeline](docs/04-pipelines.md)
+5. [Troubleshoot common errors](docs/05-troubleshooting.md)
+
+[Watch the PDO UI walkthrough](docs/assets/pdo-ui-walkthrough.webm), [watch the calculator demo](docs/assets/calculator-demo.webm), or inspect the [portable issue-to-demo pipeline](docs/examples/issue-to-demo.yaml). The real example uses [issue #1](https://github.com/Mohamedballouch/test-pdo/issues/1). PDO runs on http://localhost:5172; the calculator app below runs on http://localhost:5173.
+
 ## Features
 
 - Editable use-case name and assumptions: people affected, hours saved per person per week, working
@@ -18,10 +30,10 @@ assumptions the user can see and change. Nothing leaves the browser.
 
 ## Setup
 
-Prerequisites: Node.js 18 or later.
+Prerequisites: Node.js 24 LTS recommended (the installed Vitest also supports Node.js 22.12+ or 26+).
 
 ```bash
-npm install
+npm ci
 ```
 
 ## Run
