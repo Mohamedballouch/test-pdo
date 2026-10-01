@@ -22,9 +22,12 @@ The model choice is a launch preference; your harness account determines which m
 | Use Anthropic API billing instead | Configure a Console API key through Claude Code, following Anthropic's authentication guide | Claude Code / environment, never a pipeline prompt |
 | Read GitHub issues | Sign in with **gh auth login** in Ubuntu | GitHub CLI local auth configuration |
 | Push a branch or create a PR | Use **gh auth setup-git** after GitHub CLI sign-in | Git / GitHub CLI local auth configuration |
+| Read Jira Cloud tickets from a Claude Agent | Connect Atlassian MCP to Claude Code and sign in with Jira | Claude Code's user-level MCP configuration and Atlassian OAuth |
 | Run the calculator app | No AI or GitHub key | It uses local calculations in the browser |
 
 **Claude login and GitHub login solve different problems.** Your Claude subscription does not grant GitHub issue access. A GitHub token does not pay for Claude model usage. Do not copy **gh auth token** or any API key into a PDO node prompt.
+
+Jira is separate again: PDO has no built-in Jira account switch. The [Jira and ticket guide](09-jira-and-ticket-integration.md) shows the Claude Code connection, the required ticket-reading node, and the optional REST route for scheduled discovery. A Jira URL alone does not authenticate the agent.
 
 Claude Code's current [setup](https://code.claude.com/docs/en/setup) and [authentication](https://code.claude.com/docs/en/authentication) guides explain the account and API options. GitHub CLI's [auth guide](https://cli.github.com/manual/gh_auth_login) explains its browser flow and token alternative.
 

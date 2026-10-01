@@ -49,6 +49,8 @@ Implement https://github.com/Mohamedballouch/test-pdo/issues/1. Build and verify
 
 The first node reads the ticket through **gh**. A URL in this prompt is enough for this pipeline; the pipeline has explicit instructions to fetch the issue body and comments. PDO does not watch all GitHub issues automatically. To run when a ticket changes, you would need a configured Trigger or another external automation.
 
+The full URL in this walkthrough makes the ticket unambiguous. This pipeline's Read issue prompt also uses the selected repository's Git remote, so it can resolve an issue number such as `1` or `#1` for that repository. Other pipelines can accept a Jira key such as `PROJ-123`, a specification file, or a queue search when their first node knows how to resolve it. You do not need to paste a full link for every PDO run; see [Jira and ticket inputs](09-jira-and-ticket-integration.md#do-i-need-to-paste-a-link-every-time).
+
 Check the target path, branch, pipeline, and prompt. Select **Launch** once. The image below shows the filled prompt used for this walkthrough; it was cancelled after recording to avoid a duplicate run.
 
 ![New Run prompt containing the full GitHub issue URL](assets/new-run.png)

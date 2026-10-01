@@ -7,11 +7,14 @@ This guide is a map of **Prompt Driven Orchestrator (PDO)** for someone setting 
 | Piece | Job | Where you set it up |
 | --- | --- | --- |
 | **GitHub** | Stores the repository, issues, branches, and pull requests | GitHub website; `git` and `gh` in Ubuntu |
+| **Jira** (optional ticket source) | Stores work items when your team uses Jira instead of GitHub Issues | Jira Cloud account plus Atlassian MCP in Claude Code, or an approved API/CLI tool |
 | **PDSF** (optional) | Gives the team a method and reusable skills for turning business needs into reviewed implementation tickets | Installed into the project, or selected skills imported into PDO |
 | **PDO** | Runs a saved, visible sequence of steps against a local Git checkout; records outputs and review evidence | PDO UI at `http://localhost:5172` and `~/.pdo` in Ubuntu |
 | **Agent harness** | Supplies an AI coding agent for Agent nodes (Claude Code in this demo) | Install and sign in to Claude Code in the **same Ubuntu user** that runs PDO |
 
 The working path for this demo is **GitHub issue → local clone → PDO run → node reports and code branch → human review → GitHub pull request**. PDSF can help shape the issue, specification, tests, and review method before and during that run. PDO does not automatically install or execute PDSF, and neither tool grants GitHub or model access by itself.
+
+For a Jira-backed team, replace the **ticket-reading** part with a Jira-capable Agent node; keep the local code repository and review flow. A Jira key can be enough input once that node knows the Jira site and has access. The [Jira and ticket guide](09-jira-and-ticket-integration.md) gives the setup and no-link options.
 
 ## What PDO can do
 
@@ -68,6 +71,7 @@ Follow this order so a failing run is easy to diagnose.
 | 1. Runtime | Install `git`, `tmux`, PDO; start `pdo daemon` | `pdo --version`, `tmux -V`, PDO shows **Daemon: connected** |
 | 2. AI access | Install Claude Code in Ubuntu and sign in there | `claude --version` and `claude auth status` |
 | 3. GitHub access | Install GitHub CLI and sign in separately | `gh auth status` and `gh issue view 1 --repo Mohamedballouch/test-pdo` |
+| 3a. Jira access (optional) | Add Atlassian MCP to Claude Code for Jira ticket-reading nodes | In Claude Code, `/mcp` is authenticated and a read-only ticket lookup succeeds |
 | 4. Git author | Set your name and email for commits | `git config --global --get user.name` and `git config --global --get user.email` |
 | 5. Repository | Clone into Ubuntu home and check its remote | `git -C ~/test-pdo remote -v` |
 | 6. PDO defaults | Open **Settings → Agents → Harness & models** and choose Claude/default model | Agent choice shown in New Run |
@@ -79,6 +83,8 @@ Follow this order so a failing run is easy to diagnose.
 The cloned repository's `origin` remote points to GitHub. `gh auth login` grants GitHub CLI issue/PR access in Ubuntu, and `gh auth setup-git` lets Git use that sign-in for HTTPS pushes. Put a full issue URL in the New Run prompt **only when the pipeline has a node instructed to fetch it** with `gh`; [issue-to-demo](examples/issue-to-demo.yaml) does. PDO has no general “connect GitHub account” field or automatic issue watcher in this version. An issue URL in a prompt is input text, not an OAuth connection or webhook. See the [issue-to-run guide](03-github-issue-to-run.md).
 
 If you later want polling, configure a **Trigger** for the pipeline with a UTC five-field schedule and a guard command that checks GitHub through `gh`. Guard exit status `0` starts a run and its stdout becomes run input; a nonzero status skips that tick. **Test guard** before enabling it. Triggers run only while the daemon is running and do not track which issue was already handled for you, so the workflow needs its own label or other deduplication rule.
+
+For Jira, the equivalent guard needs a Jira CLI or REST connection; a shell guard cannot use Claude Code's MCP tools. See the [Jira guide](09-jira-and-ticket-integration.md#optional-discover-tickets-on-a-schedule).
 
 ### Model and API keys
 
@@ -99,7 +105,9 @@ An **agent profile** saves a harness, model, and effort choice. The effective ch
 
 Some Interface and Tutorial preferences live in the current browser. Settings also has sections that save immediately rather than through the main **Save** button; read the label beside each section. The **Stats** page summarizes your runs, sessions, estimated/reported cost, and performance. A missing cost estimate is shown as unavailable, not as zero.
 
-For a skill used in many runs, import it into PDO's **Skill bank** and select it at the instance, project, run, or node tier. PDO combines the selected skills and copies them into each worktree. For a repo-specific practice, put the skill in the project itself. These are two ways to deliver instructions; choose deliberately so an agent gets the expected version.
+PDO v1.110.0 seeds two managed skills in its **Skill bank**: `pdo-interactive` and `pdo-orchestrate`. The matching **Interactive** and **Orchestrator** toggles on an Agent node use them when that behavior is requested; ordinary Agent nodes do not need either toggle or PDSF. PDO's built-in runtime instructions and `pdo complete` work without installing a skill. The two seeds are orchestration instructions, not a full software-delivery method.
+
+For an additional skill used in many runs, open **Settings → Agents → Skills → Open skill bank**, import a source, then select the skill at the instance, project, run, or node tier. PDO combines those selections and delivers them into the run worktree. For a practice owned by one codebase, install the skill in that repository and commit it before a run. If the repository already contains a skill with the same name as a bank selection, PDO preserves the repository's version and skips the duplicate. The [FAQ](08-faq.md#skills-and-pdsf) compares these choices.
 
 ### Local service and file locations
 
@@ -113,7 +121,7 @@ Reusable instance pipelines live under `~/.pdo/pipelines/`; each YAML file keeps
 
 Use PDSF **before a PDO run** when a manager's idea is still vague: it helps turn that idea into well-defined work and acceptance criteria. Use PDSF **inside a PDO pipeline** only if you intentionally give the relevant skills to its Agent nodes and write prompts that call for those steps. PDO still owns execution, worktrees, routing, outputs, and inspection. For this small calculator example, the existing GitHub issue and hand-written PDO pipeline were enough; PDSF is **not yet installed in `test-pdo`**.
 
-For example, PDSF can turn a manager's request into business user stories, ask design questions, write a technical specification, and split it into implementable tickets. Once a ticket is ready, PDO can run the implement/review pipeline against it and show every handoff. When the project's Git remote points to GitHub, `/build-factory` can set up GitHub Issues as PDSF's technical backlog; `/verify-factory` checks `gh` authentication and the issue workflow. PDSF needs no separate model or GitHub API key beyond the agent and `gh` logins already described above.
+For example, PDSF can turn a manager's request into business user stories, ask design questions, write a technical specification, and split it into implementable tickets. Once a ticket is ready, PDO can run the implement/review pipeline against it and show every handoff. When the project's Git remote points to GitHub, `/build-factory` can set up GitHub Issues as PDSF's technical backlog; `/verify-factory` checks `gh` authentication and the issue workflow. PDSF can also record Jira as a business backlog or technical tracker, but that choice does not create the Jira connection: configure and verify a Jira MCP, CLI, or API route separately. For the GitHub demo, PDSF needs no separate model or GitHub API key beyond the agent and `gh` logins already described above.
 
 If you want to try PDSF with this Ubuntu checkout, run its published installer **from inside the target repository in Ubuntu**. It changes the repository by adding skills and instruction files, so use a branch and review the resulting diff:
 
@@ -136,3 +144,5 @@ The installer copies `.agents/skills/` and adds a marked block to `AGENTS.md`; f
 5. Explain the boundaries: Claude Code performs Agent work, GitHub stores tickets and PRs, PDO makes the process observable, and PDSF is an optional method for preparing more complex work.
 
 For common setup failures (daemon disconnected, missing Git author, agent sign-in, GitHub auth, wrong WSL path, failed nodes), use [Troubleshooting](05-troubleshooting.md).
+
+For answers about default skills, PDSF, and ticket references, use the [FAQ](08-faq.md); for Jira setup and scheduled ticket discovery, use [Jira and other ticket sources](09-jira-and-ticket-integration.md).
