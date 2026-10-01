@@ -2,15 +2,14 @@
 
 This is the functional walkthrough for [issue #1: AI use-case value calculator](https://github.com/Mohamedballouch/test-pdo/issues/1). The issue asks for a manager-facing app that estimates hours saved, annual savings, first-year net benefit, and payback. The completed PDO run **20260930-160812-5f4caf7** created the calculator on a run branch. The GitHub issue and the source branch are separate until someone publishes the branch or opens a pull request.
 
-[Watch the short PDO UI walkthrough](assets/pdo-ui-walkthrough.webm). It shows the actual pipeline, completed node output, and a filled New Run form. The recording **does not launch** another run or show secret credentials.
-For a playable local page with **both videos**, open [the PDO video page](http://localhost:5172/pages/pdo-guide/videos.html). It is already mounted on the PDO instance used here. On another checkout, mount the docs once from an Ubuntu terminal:
+For clear screen recordings of pipeline creation, a real run, and node-by-node inspection, watch the [two MP4 tutorials](http://localhost:5172/pages/pdo-guide/videos.html). Those tutorials use the separate **manager-readiness-demo** pipeline; the issue-to-code workflow is described below. The demo page is already mounted on the PDO instance used here. On another checkout, mount the docs once from an Ubuntu terminal:
 
 ~~~bash
 cd ~/test-pdo
 pdo page mount pdo-guide "$PWD/docs"
 ~~~
 
-Then open the same local URL. GitHub's file view may offer the WebM files as downloads rather than previewing them; the local page plays them in the browser.
+Then open the same local URL. You can also download the [pipeline-building MP4](assets/build-pipeline-demo.mp4) and [run-inspection MP4](assets/run-inspection-demo.mp4) directly.
 
 ## 1. Create or choose a ticket
 
@@ -86,7 +85,7 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173). The app's own [README](../README.md) contains a 60-second manager demo: change People affected to 40, show instant results, raise operating cost to show “No payback,” expand the formulas, and copy the summary.
 
-[Watch the calculator demo](assets/calculator-demo.webm) or see the screenshot below. For a newly completed run, inspect its branch name first; do not blindly switch to the branch above. Stop the local app with Ctrl+C when done.
+See the screenshot below and follow the [calculator's short manager demo script](../README.md#demo-script). For a newly completed run, inspect its branch name first; do not blindly switch to the branch above. Stop the local app with Ctrl+C when done.
 
 ![AI use-case value calculator with illustrative MAD results](assets/calculator.png)
 

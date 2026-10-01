@@ -4,7 +4,7 @@ A **pipeline** defines the steps and handoffs. A **run** is one execution of a p
 
 ![The issue-to-demo pipeline on PDO's visual canvas](assets/pipeline.png)
 
-For a full hands-on example that creates a pipeline, chooses Script and Agent nodes, runs it, and opens every result, follow [Build, run, and inspect a pipeline yourself](06-hands-on-pipeline-demo.md). Its [build recording](assets/build-pipeline.webm) and [run-and-inspect recording](assets/run-and-inspect-pipeline.webm) focus on the editor and inspectors rather than repeating the issue-to-code overview.
+For a full hands-on example that creates a pipeline, chooses Script and Agent nodes, runs it, and opens every result, follow [Build, run, and inspect a pipeline yourself](06-hands-on-pipeline-demo.md). Its [pipeline-building MP4](assets/build-pipeline-demo.mp4) and [run-inspection MP4](assets/run-inspection-demo.mp4) show the real PDO editor and inspectors.
 
 ## Fast path: use the example already on this PDO instance
 

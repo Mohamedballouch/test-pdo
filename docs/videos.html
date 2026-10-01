@@ -3,67 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PDO hands-on pipeline and demo videos</title>
+    <title>PDO hands-on MP4 demos</title>
     <style>
       :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f4f6fb; color: #19243a; }
       * { box-sizing: border-box; }
       body { margin: 0; }
-      header { background: #193d9b; color: white; padding: 2.5rem max(1rem, calc((100vw - 1100px) / 2)); }
+      header { background: #193d9b; color: white; padding: 2.5rem max(1rem, calc((100vw - 1400px) / 2)); }
       header h1 { margin: 0 0 .55rem; font-size: clamp(1.7rem, 3vw, 2.5rem); }
-      header p { max-width: 65ch; margin: 0; line-height: 1.5; }
-      main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem 3rem; display: grid; gap: 1.5rem; }
+      header p { max-width: 75ch; margin: 0; line-height: 1.5; }
+      main { max-width: 1400px; margin: 2rem auto; padding: 0 1rem 3rem; display: grid; gap: 1.5rem; }
       article { background: white; border: 1px solid #dde4f0; border-radius: 16px; padding: 1.25rem; box-shadow: 0 4px 18px #20305a0d; }
       h2 { margin: 0 0 .4rem; font-size: 1.3rem; }
       article p { margin: 0 0 1rem; line-height: 1.5; color: #45526b; }
       video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #101723; border-radius: 10px; }
       a { color: #254fc2; }
       .links { margin-top: .85rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-      footer { color: #55647c; max-width: 1100px; margin: 0 auto 2rem; padding: 0 1rem; }
+      footer { color: #55647c; max-width: 1400px; margin: 0 auto 2rem; padding: 0 1rem; }
     </style>
   </head>
   <body>
     <header>
-      <h1>Build, run, and inspect a PDO pipeline</h1>
-      <p>The first two recordings show the actual editor work and a completed run, step by step. The earlier overview and calculator demonstration follow below. All recordings are silent; pause or use the written guide when you want to study a setting.</p>
+      <h1>Watch PDO build, run, and inspect a pipeline</h1>
+      <p>These 1080p MP4 recordings show the real PDO interface and its controls. Use full-screen playback to read the node settings and output reports. The videos are silent; the written guides explain each choice.</p>
     </header>
     <main>
       <article>
-        <h2>1. Build the pipeline from a blank canvas</h2>
-        <p>Create two Script nodes for repeatable checks and a Claude Agent node for the manager brief. Set their outputs, connect the two branches, and save the five-node pipeline.</p>
-        <video controls playsinline preload="metadata" poster="assets/build-pipeline.png">
-          <source src="assets/build-pipeline.webm" type="video/webm">
-          Your browser cannot play WebM. Download the video below.
+        <h2>1. Choose the nodes and build the pipeline</h2>
+        <p>Start with an empty canvas. Add two Script checks and a Claude Agent, set their outputs, connect the branches, and save the reusable pipeline.</p>
+        <video controls playsinline preload="metadata" poster="assets/build-pipeline-demo.png">
+          <source src="assets/build-pipeline-demo.mp4" type="video/mp4">
+          Your browser cannot play MP4. Download the video below.
         </video>
-        <div class="links"><a href="assets/build-pipeline.webm" download>Download build video</a><a href="06-hands-on-pipeline-demo.md">Follow the click-by-click guide</a></div>
+        <div class="links"><a href="assets/build-pipeline-demo.mp4" download>Download build MP4</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/06-hands-on-pipeline-demo.md">Build it yourself</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/examples/manager-readiness-demo.yaml">See the saved pipeline</a></div>
       </article>
       <article>
         <h2>2. Launch and inspect every node</h2>
-        <p>Run the saved pipeline on the docs branch, then open Start, both script outputs, the pooled inputs and Claude brief, End, and the run-level statistics and diff. The real run took 20 seconds.</p>
-        <video controls playsinline preload="metadata" poster="assets/run-pipeline.png">
-          <source src="assets/run-and-inspect-pipeline.webm" type="video/webm">
-          Your browser cannot play WebM. Download the video below.
+        <p>Choose the repository and branch, launch a real run, then open the Start, both Script, Agent, and End nodes. Read the inputs, outputs, tests, manager brief, Info, and Diff.</p>
+        <video controls playsinline preload="metadata" poster="assets/run-inspection-demo.png">
+          <source src="assets/run-inspection-demo.mp4" type="video/mp4">
+          Your browser cannot play MP4. Download the video below.
         </video>
-        <div class="links"><a href="assets/run-and-inspect-pipeline.webm" download>Download run video</a><a href="examples/manager-readiness-demo.yaml">View the reusable pipeline</a><a href="examples/manager-readiness-brief.md">Read the generated brief</a></div>
-      </article>
-      <article>
-        <h2>3. Earlier PDO workflow overview</h2>
-        <p>See the six-node pipeline, the completed run's reports, the archived-run diff limitation, and where the GitHub issue link goes in New Run.</p>
-        <video controls playsinline preload="metadata" poster="assets/pipeline.png">
-          <source src="assets/pdo-ui-walkthrough.webm" type="video/webm">
-          Your browser cannot play WebM. Download the video below.
-        </video>
-        <div class="links"><a href="assets/pdo-ui-walkthrough.webm" download>Download PDO video</a><a href="03-github-issue-to-run.md">Read the run guide</a></div>
-      </article>
-      <article>
-        <h2>4. Calculator demo</h2>
-        <p>Watch the illustrative MAD estimate change as assumptions change, then see the no-payback case, formulas, and Copy summary.</p>
-        <video controls playsinline preload="metadata" poster="assets/calculator.png">
-          <source src="assets/calculator-demo.webm" type="video/webm">
-          Your browser cannot play WebM. Download the video below.
-        </video>
-        <div class="links"><a href="assets/calculator-demo.webm" download>Download calculator video</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/README.md">Read the app guide</a></div>
+        <div class="links"><a href="assets/run-inspection-demo.mp4" download>Download run MP4</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/examples/manager-readiness-video-brief.md">Read this run's brief</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/07-pdo-functional-and-configuration-guide.md">Understand PDO and PDSF</a></div>
       </article>
     </main>
-    <footer>These are local demonstrations. The calculator uses illustrative assumptions; no company data is shown.</footer>
+    <footer>The run uses a demonstration repository and illustrative calculator data. Read the <a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/docs/01-install-and-connect.md">installation guide</a> for Ubuntu, Claude Code, and GitHub setup.</footer>
   </body>
 </html>
