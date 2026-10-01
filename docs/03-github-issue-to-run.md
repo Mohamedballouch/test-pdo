@@ -3,6 +3,14 @@
 This is the functional walkthrough for [issue #1: AI use-case value calculator](https://github.com/Mohamedballouch/test-pdo/issues/1). The issue asks for a manager-facing app that estimates hours saved, annual savings, first-year net benefit, and payback. The completed PDO run **20260930-160812-5f4caf7** created the calculator on a run branch. The GitHub issue and the source branch are separate until someone publishes the branch or opens a pull request.
 
 [Watch the short PDO UI walkthrough](assets/pdo-ui-walkthrough.webm). It shows the actual pipeline, completed node output, and a filled New Run form. The recording **does not launch** another run or show secret credentials.
+For a playable local page with **both videos**, open [the PDO video page](http://localhost:5172/pages/pdo-guide/videos.html). It is already mounted on the PDO instance used here. On another checkout, mount the docs once from an Ubuntu terminal:
+
+~~~bash
+cd ~/test-pdo
+pdo page mount pdo-guide "$PWD/docs"
+~~~
+
+Then open the same local URL. GitHub's file view may offer the WebM files as downloads rather than previewing them; the local page plays them in the browser.
 
 ## 1. Create or choose a ticket
 
