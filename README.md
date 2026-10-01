@@ -12,11 +12,12 @@ This repository also contains a step-by-step guide for running a GitHub issue th
 2. [Configure the agent, model, and keys](docs/02-agents-and-keys.md)
 3. [Run a GitHub issue and inspect its results](docs/03-github-issue-to-run.md)
 4. [Create or adapt a multi-step pipeline](docs/04-pipelines.md)
-5. [Troubleshoot common errors](docs/05-troubleshooting.md)
+5. [Build, run, and inspect a pipeline yourself](docs/06-hands-on-pipeline-demo.md)
+6. [Troubleshoot common errors](docs/05-troubleshooting.md)
 
-[Watch the PDO UI walkthrough](docs/assets/pdo-ui-walkthrough.webm), [watch the calculator demo](docs/assets/calculator-demo.webm), or inspect the [portable issue-to-demo pipeline](docs/examples/issue-to-demo.yaml). The real example uses [issue #1](https://github.com/Mohamedballouch/test-pdo/issues/1). PDO runs on http://localhost:5172; the calculator app below runs on http://localhost:5173.
+For the hands-on workflow, [watch pipeline creation](docs/assets/build-pipeline.webm) and [watch the live run and node inspection](docs/assets/run-and-inspect-pipeline.webm). The [earlier PDO UI overview](docs/assets/pdo-ui-walkthrough.webm) and [calculator demo](docs/assets/calculator-demo.webm) cover different parts of the story. The portable examples are [manager-readiness-demo](docs/examples/manager-readiness-demo.yaml) and [issue-to-demo](docs/examples/issue-to-demo.yaml). The issue example uses [issue #1](https://github.com/Mohamedballouch/test-pdo/issues/1). PDO runs on http://localhost:5172; the calculator app below runs on http://localhost:5173.
 
-To play both videos in a browser beside PDO, follow the [local video page instructions](docs/03-github-issue-to-run.md).
+To play all recordings in a browser beside PDO, open the [local video page](http://localhost:5172/pages/pdo-guide/videos.html). If it is not mounted, follow the [local video page instructions](docs/03-github-issue-to-run.md).
 
 ## Features
 

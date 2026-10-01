@@ -4,6 +4,8 @@ A **pipeline** defines the steps and handoffs. A **run** is one execution of a p
 
 ![The issue-to-demo pipeline on PDO's visual canvas](assets/pipeline.png)
 
+For a full hands-on example that creates a pipeline, chooses Script and Agent nodes, runs it, and opens every result, follow [Build, run, and inspect a pipeline yourself](06-hands-on-pipeline-demo.md). Its [build recording](assets/build-pipeline.webm) and [run-and-inspect recording](assets/run-and-inspect-pipeline.webm) focus on the editor and inspectors rather than repeating the issue-to-code overview.
+
 ## Fast path: use the example already on this PDO instance
 
 The instance used for this guide already has an **issue-to-demo** pipeline. Open [PDO](http://localhost:5172) → **Pipelines** → **issue-to-demo**. The canvas has six nodes and seven edges:
@@ -29,8 +31,8 @@ The pipeline definition and its four role prompts are included in [docs/examples
 
 1. Open **Pipelines → New pipeline**. Enter a unique name, such as **my-issue-pipeline**, and select **Create**.
 2. Use the canvas **Add** menu to add agent nodes between **Start** and **End**. Give every node a short job name and a focused role prompt.
-3. Select a node and define an **input port** for what it receives and an **output port** for the Markdown or other artifact it must produce. The receiving node gets the exact output path in its runtime instructions.
-4. Connect the output handle of one node to the input handle of the next. For a reviewer, connect both the original requirements and the implementation report.
+3. Select a node and define an **output port** for the Markdown or other artifact it must produce. Inputs on Agent and Script nodes appear from incoming edges; the receiving node gets the exact input paths in its runtime instructions.
+4. Drag from the border of the source card onto the target card. The new edge carries the source's first declared output; click the edge to change its **Outputs** selection when needed. For a reviewer, connect both the original requirements and the implementation report.
 5. For a pass/fail branch, define a **frontmatter field** on the review output named **verdict**, with allowed values **pass** and **fail**. Add a conditional edge for each value.
 6. Put the implementer and reviewer in a **bounded loop**, with a maximum iteration count. This prevents endless retries when the same problem cannot be fixed.
 7. Inspect every node prompt and connection, then select **Save**. Run it once on a small issue and read all node outputs before using it for larger work.

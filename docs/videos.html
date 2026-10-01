@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PDO and calculator video walkthroughs</title>
+    <title>PDO hands-on pipeline and demo videos</title>
     <style>
       :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f4f6fb; color: #19243a; }
       * { box-sizing: border-box; }
@@ -23,12 +23,30 @@
   </head>
   <body>
     <header>
-      <h1>From GitHub issue to manager demo</h1>
-      <p>Two short recordings from the real test-pdo setup. Use the controls to play, pause, or jump to a step. The videos are screen recordings without narration.</p>
+      <h1>Build, run, and inspect a PDO pipeline</h1>
+      <p>The first two recordings show the actual editor work and a completed run, step by step. The earlier overview and calculator demonstration follow below. All recordings are silent; pause or use the written guide when you want to study a setting.</p>
     </header>
     <main>
       <article>
-        <h2>1. PDO workflow</h2>
+        <h2>1. Build the pipeline from a blank canvas</h2>
+        <p>Create two Script nodes for repeatable checks and a Claude Agent node for the manager brief. Set their outputs, connect the two branches, and save the five-node pipeline.</p>
+        <video controls playsinline preload="metadata" poster="assets/build-pipeline.png">
+          <source src="assets/build-pipeline.webm" type="video/webm">
+          Your browser cannot play WebM. Download the video below.
+        </video>
+        <div class="links"><a href="assets/build-pipeline.webm" download>Download build video</a><a href="06-hands-on-pipeline-demo.md">Follow the click-by-click guide</a></div>
+      </article>
+      <article>
+        <h2>2. Launch and inspect every node</h2>
+        <p>Run the saved pipeline on the docs branch, then open Start, both script outputs, the pooled inputs and Claude brief, End, and the run-level statistics and diff. The real run took 20 seconds.</p>
+        <video controls playsinline preload="metadata" poster="assets/run-pipeline.png">
+          <source src="assets/run-and-inspect-pipeline.webm" type="video/webm">
+          Your browser cannot play WebM. Download the video below.
+        </video>
+        <div class="links"><a href="assets/run-and-inspect-pipeline.webm" download>Download run video</a><a href="examples/manager-readiness-demo.yaml">View the reusable pipeline</a><a href="examples/manager-readiness-brief.md">Read the generated brief</a></div>
+      </article>
+      <article>
+        <h2>3. Earlier PDO workflow overview</h2>
         <p>See the six-node pipeline, the completed run's reports, the archived-run diff limitation, and where the GitHub issue link goes in New Run.</p>
         <video controls playsinline preload="metadata" poster="assets/pipeline.png">
           <source src="assets/pdo-ui-walkthrough.webm" type="video/webm">
@@ -37,13 +55,13 @@
         <div class="links"><a href="assets/pdo-ui-walkthrough.webm" download>Download PDO video</a><a href="03-github-issue-to-run.md">Read the run guide</a></div>
       </article>
       <article>
-        <h2>2. Calculator demo</h2>
+        <h2>4. Calculator demo</h2>
         <p>Watch the illustrative MAD estimate change as assumptions change, then see the no-payback case, formulas, and Copy summary.</p>
         <video controls playsinline preload="metadata" poster="assets/calculator.png">
           <source src="assets/calculator-demo.webm" type="video/webm">
           Your browser cannot play WebM. Download the video below.
         </video>
-        <div class="links"><a href="assets/calculator-demo.webm" download>Download calculator video</a><a href="../README.md">Read the app guide</a></div>
+        <div class="links"><a href="assets/calculator-demo.webm" download>Download calculator video</a><a href="https://github.com/Mohamedballouch/test-pdo/blob/docs/pdo-onboarding/README.md">Read the app guide</a></div>
       </article>
     </main>
     <footer>These are local demonstrations. The calculator uses illustrative assumptions; no company data is shown.</footer>
